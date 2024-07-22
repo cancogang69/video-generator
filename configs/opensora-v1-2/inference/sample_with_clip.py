@@ -28,7 +28,7 @@ vae = dict(
 )
 text_encoder = dict(
     type="clip",
-    path="openai/clip-vit-huge-patch14",
+    # path="openai/clip-vit-huge-patch14",
     model_max_length=100,
 )
 scheduler = dict(
