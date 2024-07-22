@@ -76,6 +76,8 @@ def main():
     text_encoder = build_module(cfg.text_encoder, MODELS, device=device)
     vae = build_module(cfg.vae, MODELS).to(device, dtype).eval()
 
+    print("Done with building text-encoder and vae")
+
     # == prepare video size ==
     image_size = cfg.get("image_size", None)
     if image_size is None:
@@ -105,6 +107,8 @@ def main():
     )
     text_encoder.y_embedder = model.y_embedder  # HACK: for classifier-free guidance
 
+    print("Done with building diffusion")
+
     # == build scheduler ==
     scheduler = build_module(cfg.scheduler, SCHEDULERS)
 
@@ -119,6 +123,8 @@ def main():
             prompts = load_prompts(cfg.prompt_path, start_idx, cfg.get("end_index", None))
         else:
             prompts = [cfg.get("prompt_generator", "")] * 1_000_000  # endless loop
+
+    print("Done with building scheduler")
 
     # == prepare reference ==
     reference_path = cfg.get("reference_path", [""] * len(prompts))
