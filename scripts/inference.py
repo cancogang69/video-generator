@@ -43,7 +43,7 @@ def main():
     cfg = parse_configs(training=False)
 
     # == device and dtype ==
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda:0,1" if torch.cuda.is_available() else "cpu"
     cfg_dtype = cfg.get("dtype", "fp32")
     assert cfg_dtype in ["fp16", "bf16", "fp32"], f"Unknown mixed precision {cfg_dtype}"
     dtype = to_torch_dtype(cfg.get("dtype", "bf16"))
