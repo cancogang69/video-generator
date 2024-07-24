@@ -29,7 +29,7 @@ vae = dict(
 text_encoder = dict(
     type="clip",
     from_pretrained="openai/clip-vit-large-patch14",
-    model_max_length=100,
+    model_max_length=300,
 )
 scheduler = dict(
     type="rflow",
